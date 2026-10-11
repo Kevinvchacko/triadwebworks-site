@@ -278,3 +278,5 @@ html[data-end="1"] .fab{opacity:0;pointer-events:none;transform:translate3d(0,24
 }
 
 [hidden]{display:none !important}
+.work-shot{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+@media (hover:hover){.work-card:hover .work-shot{transform:scale(1.05)}}
