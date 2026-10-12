@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Triad Webworks landing page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:dark}
+body{margin:0;background:#0B0919;color:#F6F3FF;font-family:'Figtree','Segoe UI',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:#F6F3FF;text-decoration:none}
+:focus-visible{outline:3px solid #FFB68F;outline-offset:3px}
+::placeholder{color:#9A93C4}
+input,textarea{width:100%;min-width:0;max-width:100%}
+.foot-grid a{display:inline-block;padding:6px 0}
+.display{font-family:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;font-optical-sizing:auto}
+.wrap{max-width:1280px;margin:0 auto;padding-left:40px;padding-right:40px;overflow-wrap:break-word}
+.sec{padding-top:120px;padding-bottom:120px;scroll-margin-top:72px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;font-size:17px;font-weight:600;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:transform .15s ease,background .15s ease,filter .15s ease;-webkit-tap-highlight-color:transparent}
+.btn-primary{background:linear-gradient(100deg,#6B43FF,#B734D6);color:#fff}
+.btn-ghost{background:transparent;color:#F6F3FF;border-color:rgba(255,255,255,0.3)}
+.btn-sm{min-height:44px;padding:0 22px;font-size:16px}
+.menu-btn{display:none}
+@media (hover:hover){
+  a:hover{color:#FFB68F}
+  a.btn-primary:hover{color:#fff;filter:brightness(1.1)}
+  a.btn-ghost:hover{color:#F6F3FF;background:rgba(255,255,255,0.08)}
+  button.btn-primary:hover{filter:brightness(1.12)}
+}
+.orb-a{animation:driftA 16s ease-in-out infinite alternate}
+.orb-b{animation:driftB 19s ease-in-out infinite alternate}
+.orb-c{animation:driftC 22s ease-in-out infinite alternate}
+@keyframes driftA{from{transform:translate(0,0)}to{transform:translate(18px,14px)}}
+@keyframes driftB{from{transform:translate(0,0)}to{transform:translate(-16px,18px)}}
+@keyframes driftC{from{transform:translate(0,0)}to{transform:translate(10px,-18px)}}
+/* ---------- motion system ---------- */
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+.progress{position:fixed;left:0;right:0;top:0;height:3px;z-index:60;transform-origin:0 50%;transform:scaleX(var(--sp,0));background:linear-gradient(90deg,#6B43FF,#C13BE0,#FF7A3D);pointer-events:none}
+.cursor-glow{display:none}
+.fine .cursor-glow{display:block;position:fixed;left:0;top:0;right:0;bottom:0;z-index:2;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(520px circle at var(--cx,-999px) var(--cy,-999px),rgba(143,107,255,0.13),rgba(143,107,255,0) 62%)}
+
+/* intro */
+.intro{position:fixed;left:0;right:0;top:0;bottom:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:#0B0919;pointer-events:none;animation:introOut .8s cubic-bezier(.76,0,.24,1) 1.15s forwards}
+@keyframes introOut{to{clip-path:inset(0 0 100% 0);visibility:hidden}}
+.intro-tri{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .8s cubic-bezier(.6,0,.2,1) .1s forwards}
+.intro-node{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:pop .45s cubic-bezier(.3,1.6,.5,1) forwards}
+.intro-word{opacity:0;letter-spacing:.3em;animation:wordIn .7s cubic-bezier(.2,.8,.2,1) .55s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{to{transform:scale(1)}}
+@keyframes wordIn{to{opacity:1;letter-spacing:-.01em}}
+
+/* hero entrance */
+.ln{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.ln-i{display:block;animation:lineUp 1.05s cubic-bezier(.2,.85,.2,1) both;animation-delay:calc(1.25s + var(--i,0) * .13s)}
+@keyframes lineUp{from{transform:translate3d(0,110%,0) rotate(3deg)}to{transform:none}}
+.hero-in{animation:fadeUp .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(1.6s + var(--i,0) * .1s)}
+@keyframes fadeUp{from{opacity:0;transform:translate3d(0,26px,0)}to{opacity:1;transform:none}}
+.grad-flow{background-size:220% 100% !important;animation:gradFlow 6s ease-in-out infinite alternate}
+@keyframes gradFlow{from{background-position:0% 50%}to{background-position:100% 50%}}
+.shine-stroke{background:linear-gradient(100deg,rgba(255,255,255,0) 35%,rgba(255,255,255,0.95) 50%,rgba(255,255,255,0) 65%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;animation:shine 4.5s ease-in-out 2.6s infinite}
+@keyframes shine{0%{background-position:130% 0}55%,100%{background-position:-130% 0}}
+.hero-bg{animation:bgBreathe 12s ease-in-out infinite alternate}
+@keyframes bgBreathe{from{opacity:.75;transform:scale(1)}to{opacity:1;transform:scale(1.06)}}
+.hero-lines{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;opacity:.5;background-image:linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(70% 60% at 60% 40%,#000 20%,transparent 75%);mask-image:radial-gradient(70% 60% at 60% 40%,#000 20%,transparent 75%);animation:gridPan 24s linear infinite}
+@keyframes gridPan{to{background-position:64px 64px}}
+
+/* orbs */
+.orbs{transform:translate3d(calc(var(--mx,0) * -28px),calc(var(--my,0) * -28px),0);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.orb-a{animation:driftA 16s ease-in-out infinite alternate,orbIn 1.6s cubic-bezier(.2,.8,.2,1) 1.1s both}
+.orb-b{animation:driftB 19s ease-in-out infinite alternate,orbIn 1.6s cubic-bezier(.2,.8,.2,1) 1.25s both}
+.orb-c{animation:driftC 22s ease-in-out infinite alternate,orbIn 1.6s cubic-bezier(.2,.8,.2,1) 1.4s both}
+@keyframes orbIn{from{opacity:0;filter:blur(40px)}to{opacity:1;filter:blur(0)}}
+.orb-ring{position:absolute;left:4%;top:4%;width:92%;height:92%;animation:spin 60s linear infinite}
+.orb-flow{stroke-dasharray:6 10;animation:flow 1.6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes flow{to{stroke-dashoffset:-32}}
+.orb-tag{animation:bob 5s ease-in-out infinite,fadeUp .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:0s,calc(1.9s + var(--i,0) * .12s)}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -8px}}
+
+/* buttons */
+.btn{position:relative;overflow:hidden;isolation:isolate;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease,background-color .2s ease,filter .2s ease}
+.btn-primary{background:linear-gradient(100deg,#6B43FF,#B734D6,#8F4DE8,#6B43FF) !important;background-size:300% 100% !important;animation:btnFlow 7s linear infinite;box-shadow:0 12px 32px -12px rgba(143,77,232,0.8)}
+@keyframes btnFlow{to{background-position:300% 0}}
+.btn::after{content:"";position:absolute;left:0;top:0;right:0;bottom:0;z-index:-1;background:linear-gradient(115deg,rgba(255,255,255,0) 30%,rgba(255,255,255,0.35) 50%,rgba(255,255,255,0) 70%);transform:translateX(-130%);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.mag{transform:translate3d(var(--tx,0px),var(--ty,0px),0)}
+.btn:active{transform:translate3d(var(--tx,0px),var(--ty,0px),0) scale(.97)}
+@media (hover:hover){
+  .btn:hover::after{transform:translateX(130%)}
+  a.btn-primary:hover{box-shadow:0 18px 44px -12px rgba(183,52,214,0.85)}
+  .brand svg{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+  .brand:hover svg{transform:rotate(120deg)}
+  .faq-q:hover span:first-child{color:#FFB68F}
+  .chip:hover{transform:translateY(-2px)}
+  .li-btn:hover{background:linear-gradient(135deg,#6B43FF,#C13BE0);border-color:transparent !important}
+}
+.chip{transition:background .25s ease,color .25s ease,border-color .25s ease,transform .2s ease}
+.chip:active{transform:scale(.95)}
+.li-btn{transition:background .25s ease,transform .25s ease}
+
+/* nav */
+.nav-pill{transition:background .3s ease,box-shadow .3s ease,padding .3s ease}
+html[data-scrolled="1"] .nav-pill{background:rgba(13,10,30,0.92) !important;box-shadow:0 18px 50px -18px rgba(0,0,0,0.8),0 0 0 1px rgba(143,107,255,0.18)}
+.nav-links a{position:relative;padding:6px 0}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#8F6BFF,#FF8A4C);transform:scaleX(0);transform-origin:0 50%;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.nav-links a.on::after{transform:scaleX(1)}
+@media (hover:hover){.nav-links a:hover::after{transform:scaleX(1)}}
+.menu-pop{animation:menuPop .35s cubic-bezier(.2,.9,.2,1) both;transform-origin:top center}
+@keyframes menuPop{from{opacity:0;transform:translateY(-10px) scale(.97)}to{opacity:1;transform:none}}
+.menu-pop a{animation:fadeUp .4s cubic-bezier(.2,.8,.2,1) both}
+.menu-pop a:nth-child(2){animation-delay:.04s}.menu-pop a:nth-child(3){animation-delay:.08s}.menu-pop a:nth-child(4){animation-delay:.12s}.menu-pop a:nth-child(5){animation-delay:.16s}.menu-pop a:nth-child(6){animation-delay:.2s}.menu-pop a:nth-child(7){animation-delay:.24s}
+
+/* marquee */
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mq-track{display:flex;width:max-content;animation:mq 40s linear infinite}
+.mq-set{display:flex;align-items:center;gap:40px;padding-right:40px;flex:none}
+.mq-word{font-size:clamp(34px,5vw,72px);font-weight:800;letter-spacing:-0.03em;line-height:1.1;white-space:nowrap}
+.mq-out{color:transparent;-webkit-text-stroke:1.5px rgba(246,243,255,0.55)}
+@keyframes mq{to{transform:translate3d(-50%,0,0)}}
+@media (hover:hover){.marquee:hover .mq-track{animation-play-state:paused}}
+
+/* scroll reveals */
+.js-anim .rv{opacity:0;transform:translate3d(0,40px,0) scale(.985);transition:opacity .9s cubic-bezier(.2,.75,.2,1),transform .9s cubic-bezier(.2,.75,.2,1),box-shadow .3s ease;transition-delay:calc(var(--i,0) * 80ms)}
+.js-anim .rv-sec.in .rv{opacity:1;transform:none}
+.js-anim .rv-l{transform:translate3d(-40px,0,0)}
+.js-anim .rv-sec .team-img{clip-path:inset(100% 0 0 0);transition:clip-path 1.2s cubic-bezier(.76,0,.24,1);transition-delay:calc(var(--i,0) * 120ms + 150ms)}
+.js-anim .rv-sec.in .team-img{clip-path:inset(0 0 0 0)}
+.js-anim .rv-sec .chk path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s cubic-bezier(.6,0,.2,1);transition-delay:calc(var(--i,0) * 110ms + 350ms)}
+.js-anim .rv-sec.in .chk path{stroke-dashoffset:0}
+
+/* cards: spotlight + tilt */
+.spot{position:relative;overflow:hidden;isolation:isolate}
+.spot::before{content:"";position:absolute;left:0;top:0;right:0;bottom:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .4s ease;background:radial-gradient(420px circle at var(--x,50%) var(--y,50%),rgba(143,107,255,0.22),rgba(143,107,255,0) 60%)}
+.ico{transition:transform .5s cubic-bezier(.3,1.5,.5,1),background .3s ease}
+@media (hover:hover){
+  .spot:hover::before{opacity:1}
+  .spot:hover{box-shadow:0 30px 70px -30px rgba(107,67,255,0.6)}
+  .spot:hover .ico{transform:rotate(-10deg) scale(1.12);background:linear-gradient(135deg,rgba(107,67,255,0.55),rgba(193,59,224,0.55)) !important}
+  html.js-anim .rv-sec.in .tilt:hover,.fine .tilt:hover{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px);transition:transform .25s ease,box-shadow .3s ease,opacity .9s ease;transition-delay:0s}
+  .work-card:hover .work-mock{transform:translateY(-12%)}
+  .work-card:hover .work-thumb{filter:saturate(1.25)}
+  .team-card:hover .team-img img{transform:scale(1.07)}
+}
+.work-mock{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.work-thumb{transition:filter .5s ease}
+.team-img img{transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.skel{background:linear-gradient(90deg,rgba(255,255,255,0.12),rgba(255,255,255,0.28),rgba(255,255,255,0.12)) !important;background-size:200% 100% !important;animation:skel 2.2s ease-in-out infinite}
+@keyframes skel{from{background-position:100% 0}to{background-position:-100% 0}}
+
+/* rotating gradient borders */
+.spin-border{animation:ang 5s linear infinite}
+@keyframes ang{to{--ang:360deg}}
+
+/* process */
+.draw-line{transform:scaleX(0);transform-origin:0 50%;transition:transform 1.6s cubic-bezier(.7,0,.2,1) .2s}
+.rv-sec.in .draw-line,html:not(.js-anim) .draw-line{transform:scaleX(1)}
+.steps-dot{position:absolute;top:-4px;left:0;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,0.15),0 0 24px 6px rgba(193,59,224,0.9);opacity:0}
+.rv-sec.in .steps-dot{animation:travel 3.4s cubic-bezier(.6,0,.4,1) 1.8s infinite}
+@keyframes travel{0%{left:0;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:calc(100% - 10px);opacity:0}}
+.step-dot{position:relative;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.step-dot::after{content:"";position:absolute;left:-2px;top:-2px;right:-2px;bottom:-2px;border-radius:50%;border:2px solid currentColor;opacity:0}
+.rv-sec.in .step-dot::after{animation:ping 2.8s cubic-bezier(0,0,.2,1) infinite;animation-delay:calc(1.4s + var(--i,0) * .35s)}
+@keyframes ping{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(1.9);opacity:0}}
+@media (hover:hover){.steps li:hover .step-dot{transform:scale(1.15) rotate(-8deg)}}
+
+/* security shield */
+.sh-out{stroke-dasharray:1;stroke-dashoffset:1}
+.sh-tri{stroke-dasharray:1;stroke-dashoffset:1}
+.rv-sec.in .sh-out,html:not(.js-anim) .sh-out{animation:draw 1.8s cubic-bezier(.6,0,.2,1) .2s forwards}
+.rv-sec.in .sh-tri,html:not(.js-anim) .sh-tri{animation:draw 1.2s cubic-bezier(.6,0,.2,1) 1s forwards}
+.sh-scan{animation:scan 3.6s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes scan{from{transform:translateY(0)}to{transform:translateY(420px)}}
+.sh-node{transform-box:fill-box;transform-origin:center;animation:nodePulse 2.4s ease-in-out infinite}
+.sh-node:nth-of-type(2){animation-delay:.8s}.sh-node:nth-of-type(3){animation-delay:1.6s}
+@keyframes nodePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+.shield svg{filter:drop-shadow(0 20px 60px rgba(107,67,255,0.35))}
+
+/* faq */
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)}
+.faq-a>div{min-height:0;overflow:hidden}
+.faq-a p{opacity:0;transform:translateY(-8px);transition:opacity .4s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+.faq-item.open .faq-a p{opacity:1;transform:none;transition-delay:.08s}
+.faq-q span:first-child{transition:color .25s ease}
+.faq-plus{transition:transform .45s cubic-bezier(.3,1.5,.5,1) !important}
+
+/* contact + success */
+.grad-text{background:linear-gradient(90deg,#F6F3FF 0%,#C9B8FF 25%,#F07BE3 45%,#FFB27A 60%,#F6F3FF 80%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gradFlow 7s ease-in-out infinite alternate}
+.ok-pop{animation:pop .6s cubic-bezier(.3,1.6,.5,1) both}
+.ok-pop path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .6s cubic-bezier(.6,0,.2,1) .35s forwards}
+
+/* floating book button */
+.fab{position:fixed;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));z-index:35;display:flex;align-items:center;gap:10px;opacity:0;pointer-events:none;transform:translate3d(0,24px,0) scale(.85);transition:opacity .45s ease,transform .5s cubic-bezier(.3,1.4,.5,1)}
+html[data-past-hero="1"] .fab{opacity:1;pointer-events:auto;transform:translate3d(var(--tx,0px),var(--ty,0px),0)}
+html[data-end="1"] .fab{opacity:0;pointer-events:none;transform:translate3d(0,24px,0) scale(.85)}
+.fab-ball{position:relative;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#6B43FF,#B734D6);box-shadow:0 16px 40px -10px rgba(143,77,232,0.9)}
+.fab-ball::before{content:"";position:absolute;left:0;top:0;right:0;bottom:0;border-radius:50%;border:2px solid #B734D6;animation:ping 2.4s cubic-bezier(0,0,.2,1) infinite}
+.fab-label{padding:10px 16px;border-radius:999px;background:rgba(13,10,30,0.92);border:1px solid rgba(255,255,255,0.16);font-size:15px;font-weight:600;white-space:nowrap;opacity:0;transform:translateX(10px);transition:opacity .3s ease,transform .3s ease}
+@media (hover:hover){.fab:hover .fab-label{opacity:1;transform:none}}
+
+/* footer wordmark */
+.foot-mark{font-size:clamp(56px,13.5vw,230px);font-weight:800;letter-spacing:-0.05em;line-height:.85;white-space:nowrap;color:transparent;-webkit-text-stroke:1.5px rgba(246,243,255,0.18);background:linear-gradient(90deg,#8F6BFF,#E14BD2,#FF8A4C);background-size:0% 100%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;transition:background-size 2.2s cubic-bezier(.7,0,.2,1) .2s;text-align:center;user-select:none}
+.rv-sec.in .foot-mark,html:not(.js-anim) .foot-mark{background-size:100% 100%}
+
+@media (hover:none){.tilt,.spot{transform:none}}
+@media (max-width:600px){
+  .fab{right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom))}
+  .fab-ball{width:56px;height:56px}
+  .mq-set{gap:28px;padding-right:28px}
+}
+@media (prefers-reduced-motion:reduce){
+  .orbs,.mag{transform:none !important}
+  .cursor-glow{display:none !important}
+}
+
+@media (min-width:1700px){
+  .wrap{max-width:1440px}
+  .orbs{max-width:640px !important}
+  .h1-hero{font-size:112px !important}
+}
+@media (min-width:2200px){
+  .wrap{max-width:1680px}
+  .orbs{max-width:760px !important}
+  .h1-hero{font-size:132px !important}
+}
+@media (min-width:961px){
+  .menu-panel{display:none !important}
+}
+@media (max-width:1100px){
+  .nav-links{gap:20px !important}
+  .cols-4{grid-template-columns:repeat(2, minmax(0, 1fr)) !important}
+  .steps{grid-template-columns:repeat(3, minmax(0, 1fr)) !important;gap:32px 24px !important}
+  .steps-line{display:none !important}
+}
+@media (max-width:960px){
+  .wrap{padding-left:max(20px, env(safe-area-inset-left));padding-right:max(20px, env(safe-area-inset-right))}
+  .sec{padding-top:72px;padding-bottom:72px}
+  .nav-links{display:none !important}
+  .menu-btn{display:inline-flex !important}
+  .hero-grid{grid-template-columns:minmax(0,1fr) !important;gap:24px !important;padding-top:48px !important;padding-bottom:64px !important}
+  .orbs{max-width:440px !important;margin:0 auto !important}
+  .h1-hero{font-size:clamp(38px,10.4vw,84px) !important}
+  .cols-2{grid-template-columns:minmax(0,1fr) !important;gap:32px !important}
+  .foot-grid{grid-template-columns:repeat(2, minmax(0, 1fr)) !important}
+  .foot-grid>*:first-child{grid-column:1 / -1}
+  .shield{display:none !important}
+}
+@media (max-width:960px) and (min-width:601px){
+  .cols-3{grid-template-columns:repeat(2, minmax(0, 1fr)) !important}
+  .cols-3>*:last-child:nth-child(odd){grid-column:1 / -1}
+  .bento{grid-template-columns:repeat(2, minmax(0, 1fr)) !important}
+  .bento>*{grid-column:span 1 !important}
+  .bento>.wide{grid-column:1 / -1 !important}
+  .work-card:last-child:nth-child(odd) .work-thumb{aspect-ratio:16/8 !important}
+}
+@media (max-width:600px){
+  .nav-pill{padding:8px 8px 8px 16px !important}
+  .cols-3{grid-template-columns:minmax(0,1fr) !important}
+  .cols-4{grid-template-columns:minmax(0,1fr) !important}
+  .bento{grid-template-columns:minmax(0,1fr) !important}
+  .bento>*{grid-column:auto !important}
+  .steps{grid-template-columns:minmax(0,1fr) !important;gap:28px !important}
+  .foot-grid{grid-template-columns:minmax(0,1fr) !important}
+  .row-2{grid-template-columns:minmax(0,1fr) !important}
+  .hero-ctas>.btn{flex:1 1 100%}
+  .cols-4{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px !important;margin-left:-20px;margin-right:-20px;padding:0 20px 12px;scroll-padding-left:20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .cols-4::-webkit-scrollbar{display:none}
+  .cols-4>*{flex:0 0 80%;scroll-snap-align:start}
+}
+@media (max-width:480px){
+  .nav-cta{display:none !important}
+  .brand{font-size:18px !important}
+  .p-card{padding:24px !important}
+  .faq-q{font-size:19px !important}
+}
+@media (max-width:380px){
+  .wrap{padding-left:max(16px, env(safe-area-inset-left));padding-right:max(16px, env(safe-area-inset-right))}
+  .cols-4{margin-left:-16px !important;margin-right:-16px !important;padding-left:16px !important;padding-right:16px !important;scroll-padding-left:16px !important}
+}
+@media (max-height:520px) and (orientation:landscape){
+  header{position:static !important}
+  .hero-grid{padding-top:24px !important;padding-bottom:40px !important}
+  .sec{padding-top:56px;padding-bottom:56px}
+}
+</style>
+</helmet>
+
+<div style="width:100%;background:#0B0919;color:#F6F3FF;font-family:'Figtree','Segoe UI',system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:clip;">
+<div class="intro" aria-hidden="true">
+  <svg width="84" height="84" viewBox="0 0 32 32" style="overflow:visible;"><path class="intro-tri" pathLength="1" d="M16 5L27 24H5L16 5Z" fill="none" stroke="#F6F3FF" stroke-opacity="0.6" stroke-width="1.2" stroke-linejoin="round"></path><circle class="intro-node" cx="16" cy="5" r="3.6" fill="#6B43FF" style="animation-delay:.35s;"></circle><circle class="intro-node" cx="27" cy="24" r="3.6" fill="#C13BE0" style="animation-delay:.47s;"></circle><circle class="intro-node" cx="5" cy="24" r="3.6" fill="#FF7A3D" style="animation-delay:.59s;"></circle></svg>
+  <div class="display intro-word" style="font-size:22px;font-weight:800;">Triad Webworks</div>
+</div>
+<div class="progress" aria-hidden="true"></div>
+<div class="cursor-glow" aria-hidden="true"></div>
+<a class="fab" href="{{ callHref }}" target="_blank" rel="noopener" aria-label="Book a free call on WhatsApp" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ rerollCall }}">
+  <span class="fab-label">Book a free call</span>
+  <span class="fab-ball"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4.2A8 8 0 1 1 8.4 18.8L4 20z"></path><path d="M9 10.5c.5 1.8 2 3.3 3.8 3.9"></path></svg></span>
+</a>
+
+
+<!-- NAV -->
+<header onKeyDown="{{ menuKey }}" style="position:sticky;top:0;z-index:30;padding:16px 16px 0;">
+  <div class="nav-pill" style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 22px;border-radius:999px;background:rgba(20,16,43,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.12);">
+    <a class="display brand" href="#top" aria-label="Triad Webworks home" style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-0.02em;color:#F6F3FF;">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5L27 24H5L16 5Z" fill="none" stroke="#F6F3FF" stroke-opacity="0.5" stroke-width="1.5" stroke-linejoin="round"></path><circle cx="16" cy="5" r="4" fill="#6B43FF"></circle><circle cx="27" cy="24" r="4" fill="#C13BE0"></circle><circle cx="5" cy="24" r="4" fill="#FF7A3D"></circle></svg>
+      Triad Webworks
+    </a>
+    <nav class="nav-links" aria-label="Main" style="display:flex;gap:30px;font-size:16px;font-weight:500;">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#packages">Packages</a>
+      <a href="#work">Work</a>
+      <a href="#team">Team</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <a class="btn btn-primary btn-sm nav-cta mag" href="{{ callHref }}" target="_blank" rel="noopener" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ rerollCall }}">Book a free call</a>
+      <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}" style="width:44px;height:44px;padding:0;border-radius:50%;border:1px solid rgba(255,255,255,0.26);background:transparent;color:#F6F3FF;cursor:pointer;align-items:center;justify-content:center;">
+        <sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </sc-if>
+        <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </sc-if>
+      </button>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="menu-panel menu-pop" style="position:absolute;left:16px;right:16px;top:100%;margin-top:8px;">
+      <nav aria-label="Mobile" style="max-width:1240px;margin:0 auto;padding:12px;border-radius:28px;background:rgba(20,16,43,0.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.14);display:flex;flex-direction:column;gap:2px;">
+        <a href="#services" onClick="{{ closeMenu }}" style="display:flex;align-items:center;min-height:52px;padding:0 16px;border-radius:16px;font-size:18px;font-weight:500;">Services</a>
+        <a href="#process" onClick="{{ closeMenu }}" style="display:flex;align-items:center;min-height:52px;padding:0 16px;border-radius:16px;font-size:18px;font-weight:500;">Process</a>
+        <a href="#packages" onClick="{{ closeMenu }}" style="display:flex;align-items:center;min-height:52px;padding:0 16px;border-radius:16px;font-size:18px;font-weight:500;">Packages</a>
+        <a href="#work" onClick="{{ closeMenu }}" style="display:flex;align-items:center;min-height:52px;padding:0 16px;border-radius:16px;font-size:18px;font-weight:500;">Work</a>
+        <a href="#team" onClick="{{ closeMenu }}" style="display:flex;align-items:center;min-height:52px;padding:0 16px;border-radius:16px;font-size:18px;font-weight:500;">Team</a>
+        <a href="#faq" onClick="{{ closeMenu }}" style="display:flex;align-items:center;min-height:52px;padding:0 16px;border-radius:16px;font-size:18px;font-weight:500;">FAQ</a>
+        <a class="btn btn-primary" href="{{ callHref }}" target="_blank" rel="noopener" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ rerollCall }}" style="margin-top:8px;">Book a free call</a>
+      </nav>
+    </div>
+  </sc-if>
+</header>
+
+<!-- HERO -->
+<section id="top" style="position:relative;margin-top:-80px;padding-top:80px;">
+  <div class="hero-lines" aria-hidden="true"></div>
+  <div class="hero-bg" aria-hidden="true" style="position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;background:radial-gradient(55% 60% at 80% 30%, rgba(107,67,255,0.32), rgba(107,67,255,0) 70%), radial-gradient(40% 45% at 92% 82%, rgba(255,122,61,0.20), rgba(255,122,61,0) 70%), radial-gradient(35% 40% at 6% 92%, rgba(193,59,224,0.16), rgba(193,59,224,0) 70%);"></div>
+  <div class="wrap hero-grid" style="position:relative;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;align-items:center;padding-top:72px;padding-bottom:104px;">
+    <div>
+      <h1 class="display h1-hero" style="font-weight:800;font-size:clamp(46px,6.6vw,98px);line-height:0.98;letter-spacing:-0.035em;">
+        <span class="ln"><span class="ln-i" style="--i:0;">We build it.</span></span>
+        <span class="ln"><span class="ln-i grad-flow" style="--i:1;display:block;width:fit-content;background:linear-gradient(90deg,#8F6BFF,#E14BD2 30%,#FF8A4C 55%,#E14BD2 75%,#8F6BFF);-webkit-background-clip:text;background-clip:text;color:transparent;">We secure it.</span></span>
+        <span class="ln"><span class="ln-i shine-stroke" style="--i:2;display:block;width:fit-content;color:transparent;-webkit-text-stroke:2px #F6F3FF;">We maintain it.</span></span>
+      </h1>
+      <p class="hero-in" style="--i:0;margin-top:28px;max-width:540px;font-size:19px;color:#B9B2DC;">Triad Webworks is a founder-led studio that designs, builds, and looks after websites, so you can get on with running your business.</p>
+
+      <div class="hero-in" style="--i:1;margin-top:32px;">
+        <div id="audience-label" style="font-size:15px;color:#B9B2DC;margin-bottom:10px;">Which sounds most like you?</div>
+        <div role="group" aria-labelledby="audience-label" style="display:inline-flex;flex-wrap:wrap;padding:4px;border-radius:999px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);">
+          <button type="button" aria-pressed="{{ isLocal }}" onClick="{{ pickLocal }}" style="border:0;cursor:pointer;min-height:44px;padding:0 20px;border-radius:999px;font-family:inherit;font-size:16px;font-weight:600;{{ localExtra }}">A local business</button>
+          <button type="button" aria-pressed="{{ isStartup }}" onClick="{{ pickStartup }}" style="border:0;cursor:pointer;min-height:44px;padding:0 20px;border-radius:999px;font-family:inherit;font-size:16px;font-weight:600;{{ startupExtra }}">A startup or brand</button>
+        </div>
+        <ul style="margin-top:22px;display:flex;flex-direction:column;gap:10px;max-width:540px;">
+          <sc-for list="{{ starts }}" as="item" hint-placeholder-count="3">
+            <li style="display:flex;gap:12px;align-items:flex-start;font-size:17px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+              <span>{{ item.text }}</span>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+
+      <div class="hero-ctas hero-in" style="--i:2;margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;">
+        <a class="btn btn-primary mag" href="{{ callHref }}" target="_blank" rel="noopener" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ rerollCall }}">Book a free call</a>
+        <a class="btn btn-ghost mag" href="{{ quoteHref }}" target="_blank" rel="noopener" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ rerollCall }}">Request a quote</a>
+      </div>
+    </div>
+
+    <div class="orbs" aria-hidden="true" style="position:relative;width:100%;max-width:560px;aspect-ratio:1/1;margin-left:auto;">
+      <svg class="orb-ring" viewBox="0 0 100 100" style="overflow:visible;"><circle cx="50" cy="50" r="49" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="0.3" stroke-dasharray="0.6 2.4"></circle><circle cx="50" cy="1" r="1.1" fill="#FFB27A"></circle><circle cx="7.6" cy="74.5" r="0.8" fill="#9B7BFF"></circle></svg>
+      <div class="orb-a" style="position:absolute;left:0;top:8%;width:64%;aspect-ratio:1/1;border-radius:50%;mix-blend-mode:screen;background:radial-gradient(circle at 40% 35%, #9B7BFF 0%, #5B3DF5 42%, rgba(91,61,245,0) 70%);"></div>
+      <div class="orb-b" style="position:absolute;right:0;top:8%;width:64%;aspect-ratio:1/1;border-radius:50%;mix-blend-mode:screen;background:radial-gradient(circle at 60% 35%, #F27BE8 0%, #C13BE0 42%, rgba(193,59,224,0) 70%);"></div>
+      <div class="orb-c" style="position:absolute;left:18%;bottom:0;width:64%;aspect-ratio:1/1;border-radius:50%;mix-blend-mode:screen;background:radial-gradient(circle at 50% 60%, #FFB27A 0%, #FF6B3D 42%, rgba(255,107,61,0) 70%);"></div>
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;"><path class="orb-flow" d="M14 8H86L50 95Z" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="0.35" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path></svg>
+      <div class="display orb-tag" style="--i:0;position:absolute;left:2%;top:4%;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:8px 18px;border-radius:999px;background:rgba(11,9,25,0.55);border:1px solid rgba(255,255,255,0.22);font-size:18px;font-weight:700;">Build</div>
+      <div class="display orb-tag" style="--i:1;animation-duration:6s,.8s;position:absolute;right:2%;top:4%;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:8px 18px;border-radius:999px;background:rgba(11,9,25,0.55);border:1px solid rgba(255,255,255,0.22);font-size:18px;font-weight:700;">Secure</div>
+      <div class="display orb-tag" style="--i:2;animation-duration:7s,.8s;position:absolute;left:50%;bottom:1%;margin-left:-3.3em;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:8px 18px;border-radius:999px;background:rgba(11,9,25,0.55);border:1px solid rgba(255,255,255,0.22);font-size:18px;font-weight:700;">Maintain</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section aria-label="What we do" style="padding-top:8px;">
+  <div class="marquee" style="padding:26px 0;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);">
+    <div class="mq-track"><div class="mq-set"><span class="display mq-word">Business websites</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">Online stores</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">Web apps</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">UI/UX design</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">SEO and speed</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">Security hardening</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">Integrations</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">Maintenance</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">Business websites</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">Online stores</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">Web apps</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">UI/UX design</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">SEO and speed</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">Security hardening</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">Integrations</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">Maintenance</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg></div><div class="mq-set" aria-hidden="true"><span class="display mq-word">Business websites</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">Online stores</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">Web apps</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">UI/UX design</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">SEO and speed</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">Security hardening</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">Integrations</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">Maintenance</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">Business websites</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">Online stores</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">Web apps</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">UI/UX design</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">SEO and speed</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">Security hardening</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word">Integrations</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg><span class="display mq-word mq-out">Maintenance</span><svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true" style="flex:none;"><circle cx="16" cy="6" r="4" fill="#6B43FF"></circle><circle cx="26" cy="24" r="4" fill="#C13BE0"></circle><circle cx="6" cy="24" r="4" fill="#FF7A3D"></circle></svg></div></div>
+  </div>
+  <div class="wrap" style="padding-top:28px;padding-bottom:8px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;">
+    <p style="font-size:16px;color:#B9B2DC;margin-right:6px;">Plugs into the tools you already use</p>
+    <span style="padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.04);font-size:15px;font-weight:500;">Razorpay</span>
+    <span style="padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.04);font-size:15px;font-weight:500;">WhatsApp</span>
+    <span style="padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.04);font-size:15px;font-weight:500;">Cal.com</span>
+    <span style="padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.04);font-size:15px;font-weight:500;">Google Analytics</span>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="sec rv-sec">
+  <div class="wrap">
+    <h2 class="display rv" style="--i:0;font-weight:700;font-size:clamp(32px,4.2vw,58px);line-height:1.05;letter-spacing:-0.025em;max-width:780px;">Everything your website needs, from first sketch to monthly upkeep.</h2>
+    <p class="rv" style="--i:1;margin-top:18px;max-width:600px;font-size:19px;color:#B9B2DC;">Choose one service or combine several. Every project starts with a free call.</p>
+
+    <div class="bento" style="margin-top:56px;display:grid;grid-template-columns:repeat(12, minmax(0, 1fr));gap:20px;">
+
+      <div class="wide p-card rv spot" style="--i:2;grid-column:span 7;padding:36px;border-radius:32px;background:radial-gradient(60% 80% at 100% 0%, rgba(107,67,255,0.28), rgba(107,67,255,0) 70%), #14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="ico" style="width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18"></path></svg></div>
+        <h3 class="display" style="margin-top:22px;font-weight:700;font-size:30px;letter-spacing:-0.02em;">Business websites</h3>
+        <p style="margin-top:10px;max-width:480px;color:#B9B2DC;">Fast, mobile-first sites for local businesses, startups, and portfolios. Built to look credible and turn visitors into enquiries.</p>
+        <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;">
+          <span style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.08);font-size:15px;">Custom design</span>
+          <span style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.08);font-size:15px;">Enquiry and booking forms</span>
+          <span style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.08);font-size:15px;">Easy content updates</span>
+        </div>
+      </div>
+
+      <div class="p-card rv spot" style="--i:3;grid-column:span 5;padding:36px;border-radius:32px;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="ico" style="width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M3 4h2l2.4 11h11l2-8H6.5"></path></svg></div>
+        <h3 class="display" style="margin-top:22px;font-weight:700;font-size:30px;letter-spacing:-0.02em;">Online stores</h3>
+        <p style="margin-top:10px;color:#B9B2DC;">Stores that take payments, track stock, and send order emails, without a headache to update.</p>
+      </div>
+
+      <div class="p-card rv spot" style="--i:4;grid-column:span 4;padding:32px;border-radius:24px;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="ico" style="width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"></path></svg></div>
+        <h3 class="display" style="margin-top:20px;font-weight:700;font-size:24px;letter-spacing:-0.02em;">Web apps and dashboards</h3>
+        <p style="margin-top:8px;color:#B9B2DC;">Custom tools with logins, databases, and admin panels for your team or customers.</p>
+      </div>
+
+      <div class="p-card rv spot" style="--i:5;grid-column:span 4;padding:32px;border-radius:24px;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="ico" style="width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4.5-1 10-10a2.1 2.1 0 00-3-3l-10 10L4 20zM14 7l3 3"></path></svg></div>
+        <h3 class="display" style="margin-top:20px;font-weight:700;font-size:24px;letter-spacing:-0.02em;">UI/UX design</h3>
+        <p style="margin-top:8px;color:#B9B2DC;">Clear, easy-to-use layouts and a consistent look across every page.</p>
+      </div>
+
+      <div class="p-card rv spot" style="--i:6;grid-column:span 4;padding:32px;border-radius:24px;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="ico" style="width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 01-12 0V8zM12 17v4"></path></svg></div>
+        <h3 class="display" style="margin-top:20px;font-weight:700;font-size:24px;letter-spacing:-0.02em;">Integrations</h3>
+        <p style="margin-top:8px;color:#B9B2DC;">Connect your site to payments, booking, analytics, and WhatsApp.</p>
+      </div>
+
+      <div class="wide p-card rv spot spin-border" style="--i:7;grid-column:span 6;padding:36px;border-radius:32px;background:linear-gradient(#14102B,#14102B) padding-box, conic-gradient(from var(--ang),#6B43FF,#C13BE0,#FF7A3D,#8F6BFF,#6B43FF) border-box;border:2px solid transparent;">
+        <div class="ico" style="width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="1.5"></rect><rect x="3" y="14" width="18" height="6" rx="1.5"></rect><path d="M7 7h.01M7 17h.01"></path></svg></div>
+        <h3 class="display" style="margin-top:22px;font-weight:700;font-size:30px;letter-spacing:-0.02em;">Website maintenance</h3>
+        <p style="margin-top:10px;max-width:460px;color:#B9B2DC;">Launch is the start. We keep your site current with content changes, software updates, and regular speed and SEO check-ups.</p>
+        <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;">
+          <span style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.08);font-size:15px;">Content changes</span>
+          <span style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.08);font-size:15px;">Software updates</span>
+          <span style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.08);font-size:15px;">Speed and SEO check-ups</span>
+          <span style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.08);font-size:15px;">Bug fixes</span>
+        </div>
+      </div>
+
+      <div class="p-card rv spot" style="--i:7;grid-column:span 3;padding:32px;border-radius:24px;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="ico" style="width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4.2-4.2"></path></svg></div>
+        <h3 class="display" style="margin-top:20px;font-weight:700;font-size:24px;letter-spacing:-0.02em;">SEO and speed</h3>
+        <p style="margin-top:8px;color:#B9B2DC;">Pages that load quickly and are built to be found.</p>
+      </div>
+
+      <div class="p-card rv spot" style="--i:7;grid-column:span 3;padding:32px;border-radius:24px;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="ico" style="width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"></path><path d="M9 12l2 2 4-4"></path></svg></div>
+        <h3 class="display" style="margin-top:20px;font-weight:700;font-size:24px;letter-spacing:-0.02em;">Security hardening</h3>
+        <p style="margin-top:8px;color:#B9B2DC;">Security basics built into every project, from safer forms to safer logins.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="sec rv-sec" style="padding-top:40px;">
+  <div class="wrap">
+    <h2 class="display rv" style="--i:0;font-weight:700;font-size:clamp(32px,4.2vw,58px);line-height:1.05;letter-spacing:-0.025em;max-width:700px;">How a project runs</h2>
+    <p class="rv" style="--i:1;margin-top:18px;max-width:560px;font-size:19px;color:#B9B2DC;">Five clear steps, so you always know what happens next.</p>
+
+    <div style="position:relative;margin-top:64px;">
+      <div class="steps-line" aria-hidden="true" style="position:absolute;left:24px;right:24px;top:23px;height:2px;"><div class="draw-line" style="position:absolute;left:0;right:0;top:0;bottom:0;background:linear-gradient(90deg,#6B43FF,#C13BE0,#FF7A3D);opacity:0.8;"></div><div class="steps-dot"></div></div>
+      <ol class="steps" style="position:relative;margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(5, minmax(0, 1fr));gap:28px;">
+        <li class="rv" style="--i:2;">
+          <div class="display step-dot" style="--i:0;color:#6B43FF;width:48px;height:48px;border-radius:50%;background:#0B0919;border:2px solid #6B43FF;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;"><span style="color:#F6F3FF;">1</span></div>
+          <h3 class="display" style="margin-top:20px;font-weight:700;font-size:24px;letter-spacing:-0.02em;">Discover</h3>
+          <p style="margin-top:8px;color:#B9B2DC;font-size:16px;">A free call to learn your goals, your customers, and your deadline.</p>
+        </li>
+        <li class="rv" style="--i:3;">
+          <div class="display step-dot" style="--i:1;color:#8F4DE8;width:48px;height:48px;border-radius:50%;background:#0B0919;border:2px solid #8F4DE8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;"><span style="color:#F6F3FF;">2</span></div>
+          <h3 class="display" style="margin-top:20px;font-weight:700;font-size:24px;letter-spacing:-0.02em;">Design</h3>
+          <p style="margin-top:8px;color:#B9B2DC;font-size:16px;">Wireframes and a visual direction that you approve before we write code.</p>
+        </li>
+        <li class="rv" style="--i:4;">
+          <div class="display step-dot" style="--i:2;color:#C13BE0;width:48px;height:48px;border-radius:50%;background:#0B0919;border:2px solid #C13BE0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;"><span style="color:#F6F3FF;">3</span></div>
+          <h3 class="display" style="margin-top:20px;font-weight:700;font-size:24px;letter-spacing:-0.02em;">Build</h3>
+          <p style="margin-top:8px;color:#B9B2DC;font-size:16px;">We develop the site, connect your integrations, and test on real devices.</p>
+        </li>
+        <li class="rv" style="--i:5;">
+          <div class="display step-dot" style="--i:3;color:#E85A9A;width:48px;height:48px;border-radius:50%;background:#0B0919;border:2px solid #E85A9A;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;"><span style="color:#F6F3FF;">4</span></div>
+          <h3 class="display" style="margin-top:20px;font-weight:700;font-size:24px;letter-spacing:-0.02em;">Launch</h3>
+          <p style="margin-top:8px;color:#B9B2DC;font-size:16px;">A security checklist and speed check, then we go live together.</p>
+        </li>
+        <li class="rv" style="--i:6;">
+          <div class="display step-dot" style="--i:4;color:#FF7A3D;width:48px;height:48px;border-radius:50%;background:#0B0919;border:2px solid #FF7A3D;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;"><span style="color:#F6F3FF;">5</span></div>
+          <h3 class="display" style="margin-top:20px;font-weight:700;font-size:24px;letter-spacing:-0.02em;">Maintain</h3>
+          <p style="margin-top:8px;color:#B9B2DC;font-size:16px;">Content changes, updates, and regular check-ups, if you want us to keep going.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages" class="sec rv-sec" style="padding-top:40px;">
+  <div class="wrap">
+    <h2 class="display rv" style="--i:0;font-weight:700;font-size:clamp(32px,4.2vw,58px);line-height:1.05;letter-spacing:-0.025em;max-width:700px;">Three ways to work with us</h2>
+    <p class="rv" style="--i:1;margin-top:18px;max-width:620px;font-size:19px;color:#B9B2DC;">Every quote is written after a free call, so you only pay for what your project needs.</p>
+
+    <div class="cols-3" style="margin-top:56px;display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:24px;align-items:stretch;">
+
+      <div class="p-card rv spot" style="--i:2;display:flex;flex-direction:column;padding:36px;border-radius:32px;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <h3 class="display" style="font-weight:800;font-size:32px;letter-spacing:-0.02em;">Launch</h3>
+        <p style="margin-top:8px;color:#B9B2DC;">For your first website</p>
+        <ul style="margin-top:28px;display:flex;flex-direction:column;gap:14px;flex-grow:1;">
+          <li style="display:flex;gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Custom, mobile-first design</span></li>
+          <li style="display:flex;gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Contact form and analytics</span></li>
+          <li style="display:flex;gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Basic SEO setup</span></li>
+          <li style="display:flex;gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Pre-launch security checklist</span></li>
+        </ul>
+        <a class="btn btn-ghost" href="{{ launchHref }}" target="_blank" rel="noopener" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ rerollCall }}" style="margin-top:32px;">Request a quote</a>
+      </div>
+
+      <div class="p-card rv spot spin-border" style="--i:3;display:flex;flex-direction:column;padding:40px 36px;border-radius:32px;background:linear-gradient(#171233,#171233) padding-box, conic-gradient(from var(--ang),#6B43FF,#C13BE0,#FF7A3D,#8F6BFF,#6B43FF) border-box;border:2px solid transparent;">
+        <h3 class="display" style="font-weight:800;font-size:32px;letter-spacing:-0.02em;">Growth</h3>
+        <p style="margin-top:8px;color:#B9B2DC;">For businesses ready to sell or scale</p>
+        <ul style="margin-top:28px;display:flex;flex-direction:column;gap:14px;flex-grow:1;">
+          <li style="display:flex;gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Everything in Launch</span></li>
+          <li style="display:flex;gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Online store or booking system</span></li>
+          <li style="display:flex;gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Payment and third-party integrations</span></li>
+          <li style="display:flex;gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>On-page SEO and speed optimization</span></li>
+        </ul>
+        <a class="btn btn-primary mag" href="{{ growthHref }}" target="_blank" rel="noopener" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ rerollCall }}" style="margin-top:32px;">Request a quote</a>
+      </div>
+
+      <div class="p-card rv spot" style="--i:4;display:flex;flex-direction:column;padding:36px;border-radius:32px;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <h3 class="display" style="font-weight:800;font-size:32px;letter-spacing:-0.02em;">Managed Care</h3>
+        <p style="margin-top:8px;color:#B9B2DC;">For sites that need regular updates</p>
+        <ul style="margin-top:28px;display:flex;flex-direction:column;gap:14px;flex-grow:1;">
+          <li style="display:flex;gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Small content changes each month</span></li>
+          <li style="display:flex;gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Software and dependency updates</span></li>
+          <li style="display:flex;gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Speed and SEO check-ups</span></li>
+          <li style="display:flex;gap:12px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:4px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Bug fixes on request</span></li>
+        </ul>
+        <a class="btn btn-ghost" href="{{ careHref }}" target="_blank" rel="noopener" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ rerollCall }}" style="margin-top:32px;">Request a quote</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section id="security" class="rv-sec" style="background:#120E26;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);scroll-margin-top:72px;">
+  <div class="wrap sec">
+    <div class="cols-2" style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,0.8fr);gap:64px;align-items:center;">
+      <div>
+        <h2 class="display rv" style="--i:0;font-weight:700;font-size:clamp(32px,4.2vw,58px);line-height:1.05;letter-spacing:-0.025em;max-width:640px;">Security is part of the build, not an add-on.</h2>
+        <p class="rv" style="--i:1;margin-top:18px;max-width:560px;font-size:19px;color:#B9B2DC;">Before any site goes live, we review it against this checklist.</p>
+        <ul style="margin-top:36px;max-width:620px;">
+          <li class="rv rv-l" style="--i:2;display:flex;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,0.12);"><svg class="chk" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8F6BFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:3px;"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>HTTPS and secure browser headers configured</span></li>
+          <li class="rv rv-l" style="--i:3;display:flex;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,0.12);"><svg class="chk" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8F6BFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:3px;"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Forms and inputs checked against common attacks</span></li>
+          <li class="rv rv-l" style="--i:4;display:flex;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,0.12);"><svg class="chk" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8F6BFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:3px;"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Dependencies scanned for known vulnerabilities</span></li>
+          <li class="rv rv-l" style="--i:5;display:flex;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,0.12);border-bottom:1px solid rgba(255,255,255,0.12);"><svg class="chk" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8F6BFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:3px;"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Admin access locked down with strong authentication</span></li>
+        </ul>
+      </div>
+      <div class="shield rv" aria-hidden="true" style="--i:2;display:flex;justify-content:center;">
+        <svg width="100%" viewBox="0 0 320 360" style="max-width:340px;overflow:visible;">
+          <defs>
+            <linearGradient id="shieldGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#8F6BFF"></stop>
+              <stop offset="0.55" stop-color="#E14BD2"></stop>
+              <stop offset="1" stop-color="#FF8A4C"></stop>
+            </linearGradient>
+            <linearGradient id="scanGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#8F6BFF" stop-opacity="0"></stop>
+              <stop offset="0.85" stop-color="#C9B8FF" stop-opacity="0.35"></stop>
+              <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.8"></stop>
+            </linearGradient>
+            <clipPath id="shieldClip"><path d="M160 24L272 68V170C272 244 226 308 160 336C94 308 48 244 48 170V68L160 24Z"></path></clipPath>
+          </defs>
+          <path d="M160 24L272 68V170C272 244 226 308 160 336C94 308 48 244 48 170V68L160 24Z" fill="rgba(255,255,255,0.03)"></path>
+          <g clip-path="url(#shieldClip)"><rect class="sh-scan" x="40" y="-70" width="240" height="70" fill="url(#scanGrad)"></rect></g>
+          <path class="sh-out" pathLength="1" d="M160 24L272 68V170C272 244 226 308 160 336C94 308 48 244 48 170V68L160 24Z" fill="none" stroke="url(#shieldGrad)" stroke-width="5" stroke-linejoin="round"></path>
+          <path class="sh-tri" pathLength="1" d="M160 96L214 218H106L160 96Z" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linejoin="round"></path>
+          <circle class="sh-node" cx="160" cy="96" r="14" fill="#6B43FF"></circle>
+          <circle class="sh-node" cx="214" cy="218" r="14" fill="#C13BE0"></circle>
+          <circle class="sh-node" cx="106" cy="218" r="14" fill="#FF7A3D"></circle>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="sec rv-sec">
+  <div class="wrap">
+    <h2 class="display rv" style="--i:0;font-weight:700;font-size:clamp(32px,4.2vw,58px);line-height:1.05;letter-spacing:-0.025em;max-width:700px;">Recent work</h2>
+    <p class="rv" style="--i:1;margin-top:18px;max-width:620px;font-size:19px;color:#B9B2DC;">Projects we've built.</p>
+
+    <div class="cols-3" style="margin-top:56px;display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:24px;">
+
+      <div class="work-card rv spot tilt" style="--i:2;border-radius:28px;overflow:hidden;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="work-thumb" style="position:relative;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#5B3DF5,#C13BE0);">
+          <div class="work-mock" style="position:absolute;left:12%;right:12%;top:16%;bottom:-6%;border-radius:16px 16px 0 0;background:rgba(11,9,25,0.85);padding:14px;display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;gap:5px;"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);"></span></div>
+            <div style="height:36%;border-radius:8px;background:rgba(255,255,255,0.14);"></div>
+            <div class="skel" style="height:8px;width:62%;border-radius:4px;background:rgba(255,255,255,0.24);"></div>
+            <div style="height:8px;width:42%;border-radius:4px;background:rgba(255,255,255,0.16);"></div>
+          </div>
+        </div>
+        <div style="padding:24px 26px 28px;">
+          <h3 class="display" style="font-weight:700;font-size:24px;letter-spacing:-0.02em;">CURRNZ</h3>
+          <p style="margin-top:6px;color:#B9B2DC;font-size:16px;">A responsive expense-tracking web app built by our founders, with real-time updates and a clean, easy interface.</p>
+        </div>
+      </div>
+
+      <div class="work-card rv spot tilt" style="--i:3;border-radius:28px;overflow:hidden;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="work-thumb" style="position:relative;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#C13BE0,#FF6B3D);">
+          <div class="work-mock" style="position:absolute;left:12%;right:12%;top:16%;bottom:-6%;border-radius:16px 16px 0 0;background:rgba(11,9,25,0.85);padding:14px;display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;gap:5px;"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);"></span></div>
+            <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:8px;height:36%;"><div style="border-radius:8px;background:rgba(255,255,255,0.14);"></div><div style="border-radius:8px;background:rgba(255,255,255,0.14);"></div><div style="border-radius:8px;background:rgba(255,255,255,0.14);"></div></div>
+            <div class="skel" style="height:8px;width:54%;border-radius:4px;background:rgba(255,255,255,0.24);"></div>
+            <div style="height:8px;width:36%;border-radius:4px;background:rgba(255,255,255,0.16);"></div>
+          </div>
+        </div>
+        <div style="padding:24px 26px 28px;">
+          <h3 class="display" style="font-weight:700;font-size:24px;letter-spacing:-0.02em;">[PROJECT NAME]</h3>
+          <p style="margin-top:6px;color:#B9B2DC;font-size:16px;">[Client type]: [what we built and the result]</p>
+        </div>
+      </div>
+
+      <div class="work-card rv spot tilt" style="--i:4;border-radius:28px;overflow:hidden;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="work-thumb" style="position:relative;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#FF6B3D,#5B3DF5);">
+          <div class="work-mock" style="position:absolute;left:12%;right:12%;top:16%;bottom:-6%;border-radius:16px 16px 0 0;background:rgba(11,9,25,0.85);padding:14px;display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;gap:5px;"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);"></span></div>
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:8px;height:52%;"><div style="border-radius:8px;background:rgba(255,255,255,0.14);"></div><div style="border-radius:8px;background:rgba(255,255,255,0.2);"></div></div>
+            <div class="skel" style="height:8px;width:58%;border-radius:4px;background:rgba(255,255,255,0.24);"></div>
+          </div>
+        </div>
+        <div style="padding:24px 26px 28px;">
+          <h3 class="display" style="font-weight:700;font-size:24px;letter-spacing:-0.02em;">[PROJECT NAME]</h3>
+          <p style="margin-top:6px;color:#B9B2DC;font-size:16px;">[Client type]: [what we built and the result]</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="sec rv-sec" style="padding-top:40px;">
+  <div class="wrap">
+    <h2 class="display rv" style="--i:0;font-weight:700;font-size:clamp(32px,4.2vw,58px);line-height:1.05;letter-spacing:-0.025em;max-width:760px;">Four founders, one team accountable for your site.</h2>
+    <p class="rv" style="--i:1;margin-top:18px;max-width:560px;font-size:19px;color:#B9B2DC;">You'll always know who is working on your project.</p>
+
+    <div class="cols-4" role="region" aria-label="Our founders" tabindex="0" style="margin-top:56px;display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:20px;">
+
+      <div class="team-card rv spot tilt" style="--i:1;display:flex;flex-direction:column;border-radius:32px;overflow:hidden;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="team-img" style="--i:1;position:relative;overflow:hidden;aspect-ratio:4/5;background:#1B1638;">
+          <img src="/_blob/44b165de8c4f63059592ea56aa8340e1" alt="Portrait of Kevin V Chacko" style="display:block;width:100%;height:100%;object-fit:cover;">
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:42%;background:radial-gradient(90% 70% at 50% 115%, rgba(107,67,255,0.55), rgba(20,16,43,0) 70%), linear-gradient(180deg, rgba(20,16,43,0), #14102B);"></div>
+        </div>
+        <div style="position:relative;display:flex;flex-direction:column;flex-grow:1;padding:0 28px 28px;margin-top:-20px;">
+          <h3 class="display" style="font-weight:700;font-size:24px;letter-spacing:-0.02em;">Kevin V Chacko</h3>
+          <p style="margin-top:2px;color:#FF9A62;font-weight:600;">Co-founder, full-stack and UI/UX</p>
+          <p style="margin-top:12px;color:#B9B2DC;font-size:16px;flex-grow:1;">Builds fast, responsive web apps with React.js and Node.js, backed by a UI/UX eye. Created the CURRNZ expense-tracking platform.</p>
+    <div style="margin-top:20px;"><a href="https://www.linkedin.com/in/kevin-chacko-45a6342a4/" target="_blank" rel="noopener" class="li-btn" aria-label="Kevin V Chacko on LinkedIn" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.26);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M8 11v5M8 8v.01M12 16v-5M12 13c0-1.5 1-2 2-2s2 .8 2 2.2V16"></path></svg></a></div>
+        </div>
+      </div>
+
+      <div class="team-card rv spot tilt" style="--i:2;display:flex;flex-direction:column;border-radius:32px;overflow:hidden;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="team-img" style="--i:2;position:relative;overflow:hidden;aspect-ratio:4/5;background:#1B1638;">
+          <img src="/_blob/4c60deb5480423037c1a2da8707ff8f8" alt="Portrait of Praveen Raj M" style="display:block;width:100%;height:100%;object-fit:cover;">
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:42%;background:radial-gradient(90% 70% at 50% 115%, rgba(193,59,224,0.5), rgba(20,16,43,0) 70%), linear-gradient(180deg, rgba(20,16,43,0), #14102B);"></div>
+        </div>
+        <div style="position:relative;display:flex;flex-direction:column;flex-grow:1;padding:0 28px 28px;margin-top:-20px;">
+          <h3 class="display" style="font-weight:700;font-size:24px;letter-spacing:-0.02em;">Praveen Raj M</h3>
+          <p style="margin-top:2px;color:#FF9A62;font-weight:600;">Co-founder, content and development</p>
+          <p style="margin-top:12px;color:#B9B2DC;font-size:16px;flex-grow:1;">Creates video, photo, and social content, and builds Python and React apps. Previously led content and media for client campaigns at Velsy Media.</p>
+    <div style="margin-top:20px;"><a href="https://in.linkedin.com/in/praveen-raj-m" target="_blank" rel="noopener" class="li-btn" aria-label="Praveen Raj M on LinkedIn" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.26);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M8 11v5M8 8v.01M12 16v-5M12 13c0-1.5 1-2 2-2s2 .8 2 2.2V16"></path></svg></a></div>
+        </div>
+      </div>
+
+      <div class="team-card rv spot tilt" style="--i:3;display:flex;flex-direction:column;border-radius:32px;overflow:hidden;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="team-img" style="--i:3;position:relative;overflow:hidden;aspect-ratio:4/5;background:#1B1638;">
+          <img src="/_blob/9f2800789a67af68d77c75738a04300b" alt="Portrait of Praveen Raj S" style="display:block;width:100%;height:100%;object-fit:cover;">
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:42%;background:radial-gradient(90% 70% at 50% 115%, rgba(255,122,61,0.5), rgba(20,16,43,0) 70%), linear-gradient(180deg, rgba(20,16,43,0), #14102B);"></div>
+        </div>
+        <div style="position:relative;display:flex;flex-direction:column;flex-grow:1;padding:0 28px 28px;margin-top:-20px;">
+          <h3 class="display" style="font-weight:700;font-size:24px;letter-spacing:-0.02em;">Praveen Raj S</h3>
+          <p style="margin-top:2px;color:#FF9A62;font-weight:600;">Co-founder, security and networking</p>
+          <p style="margin-top:12px;color:#B9B2DC;font-size:16px;flex-grow:1;">Focuses on network and application security, with hands-on Python, SQL, Linux, and Wireshark packet analysis. Built a website management system.</p>
+    <div style="margin-top:20px;"><a href="https://www.linkedin.com/in/praveen-raj-877aa9293" target="_blank" rel="noopener" class="li-btn" aria-label="Praveen Raj S on LinkedIn" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.26);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M8 11v5M8 8v.01M12 16v-5M12 13c0-1.5 1-2 2-2s2 .8 2 2.2V16"></path></svg></a></div>
+        </div>
+      </div>
+
+      <div class="team-card rv spot tilt" style="--i:4;display:flex;flex-direction:column;border-radius:32px;overflow:hidden;background:#14102B;border:1px solid rgba(255,255,255,0.12);">
+        <div class="team-img" style="--i:4;position:relative;overflow:hidden;aspect-ratio:4/5;background:#1B1638;">
+          <img src="/_blob/87bb9394a3c0e709727d1dc6f946a079" alt="Portrait of Sanjay Saravanan" style="display:block;width:100%;height:100%;object-fit:cover;">
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:42%;background:radial-gradient(90% 70% at 50% 115%, rgba(232,90,154,0.5), rgba(20,16,43,0) 70%), linear-gradient(180deg, rgba(20,16,43,0), #14102B);"></div>
+        </div>
+        <div style="position:relative;display:flex;flex-direction:column;flex-grow:1;padding:0 28px 28px;margin-top:-20px;">
+          <h3 class="display" style="font-weight:700;font-size:24px;letter-spacing:-0.02em;">Sanjay Saravanan</h3>
+          <p style="margin-top:2px;color:#FF9A62;font-weight:600;">Co-founder, design and development</p>
+          <p style="margin-top:12px;color:#B9B2DC;font-size:16px;flex-grow:1;">Designs clear, user-friendly interfaces and builds frontend and backend features with Python, SQL, and UI/UX skills. Designed CURRNZ.</p>
+          <div style="margin-top:20px;"><a href="https://www.linkedin.com/in/sanjay-saravanan-17779227" target="_blank" rel="noopener" class="li-btn" aria-label="Sanjay Saravanan on LinkedIn" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.26);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F6F3FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M8 11v5M8 8v.01M12 16v-5M12 13c0-1.5 1-2 2-2s2 .8 2 2.2V16"></path></svg></a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec rv-sec" style="padding-top:40px;">
+  <div class="wrap">
+    <div class="cols-2" style="display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:64px;align-items:start;">
+      <div>
+        <h2 class="display rv" style="--i:0;font-weight:700;font-size:clamp(32px,4.2vw,58px);line-height:1.05;letter-spacing:-0.025em;">Common questions</h2>
+        <p class="rv" style="--i:1;margin-top:18px;max-width:420px;font-size:19px;color:#B9B2DC;">Something missing? Ask us on the free call.</p>
+      </div>
+      <div class="rv" style="--i:2;">
+        <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="6">
+          <div class="faq-item {{ item.cls }}" style="border-top:1px solid rgba(255,255,255,0.14);">
+            <button type="button" class="faq-q" aria-expanded="{{ item.open }}" onClick="{{ item.toggle }}" style="width:100%;min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 0;background:transparent;border:0;cursor:pointer;color:#F6F3FF;font-family:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.01em;text-align:left;">
+              <span>{{ item.q }}</span>
+              <span class="faq-plus" style="flex:none;display:inline-flex;transform:{{ item.rot }};">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+              </span>
+            </button>
+            <div class="faq-a" aria-hidden="{{ item.hidden }}">
+              <div><p style="padding:0 40px 24px 0;color:#B9B2DC;">{{ item.a }}</p></div>
+            </div>
+          </div>
+        </sc-for>
+        <div style="border-top:1px solid rgba(255,255,255,0.14);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="rv-sec" style="position:relative;scroll-margin-top:72px;">
+  <div aria-hidden="true" style="position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;background:radial-gradient(50% 60% at 15% 20%, rgba(107,67,255,0.25), rgba(107,67,255,0) 70%), radial-gradient(45% 55% at 90% 90%, rgba(255,122,61,0.16), rgba(255,122,61,0) 70%);"></div>
+  <div class="wrap sec" style="position:relative;">
+    <div class="cols-2" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start;">
+
+      <div>
+        <h2 class="display rv" style="--i:0;font-weight:800;font-size:clamp(40px,5.4vw,80px);line-height:1;letter-spacing:-0.03em;"><span class="grad-text">Book a free call.</span></h2>
+        <p class="rv" style="--i:1;margin-top:22px;max-width:480px;font-size:19px;color:#B9B2DC;">Tell us what you're building. We'll listen, ask questions, and tell you honestly whether we're the right fit.</p>
+
+        <div class="p-card rv spot" style="--i:2;margin-top:36px;padding:28px;border-radius:28px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.14);">
+          <h3 class="display" style="font-weight:700;font-size:22px;letter-spacing:-0.01em;">The fastest way to book</h3>
+          <p style="margin-top:6px;color:#B9B2DC;font-size:16px;">Message us on WhatsApp and we'll set up your free call.</p>
+          <a class="btn btn-primary mag" href="{{ callHref }}" target="_blank" rel="noopener" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ rerollCall }}" style="margin-top:20px;">Book a free call</a>
+        </div>
+
+        <ul class="rv" style="--i:3;margin-top:32px;display:flex;flex-direction:column;gap:12px;font-size:17px;">
+          <li style="display:flex;gap:14px;align-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><a href="mailto:triadwebworksin@gmail.com">triadwebworksin@gmail.com</a></li>
+          <li style="display:flex;gap:14px;align-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;"><path d="M4 20l1.3-4.2A8 8 0 1 1 8.4 18.8L4 20z"></path></svg><a href="{{ callHref }}" target="_blank" rel="noopener" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ rerollCall }}">Chat with us on WhatsApp</a></li>
+          <li style="display:flex;gap:14px;align-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF9A62" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg><span>Chennai, India</span></li>
+        </ul>
+      </div>
+
+      <div class="p-card rv spot" style="--i:2;padding:36px;border-radius:32px;background:#14102B;border:1px solid rgba(255,255,255,0.14);">
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <h3 class="display" style="font-weight:700;font-size:28px;letter-spacing:-0.02em;">Request a quote</h3>
+            <p style="margin-top:8px;color:#B9B2DC;font-size:16px;">Share a few details and we'll follow up with a quote after a short call.</p>
+
+            <div class="row-2" style="margin-top:28px;display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:16px;">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <label for="brief-name" style="font-size:15px;font-weight:500;">Your name</label>
+                <input id="brief-name" type="text" autocomplete="name" placeholder="Full name" value="{{ formName }}" onChange="{{ setName }}" style="min-height:52px;padding:0 16px;border-radius:14px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.06);color:#F6F3FF;font-family:inherit;font-size:16px;">
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <label for="brief-email" style="font-size:15px;font-weight:500;">Email</label>
+                <input id="brief-email" type="email" autocomplete="email" placeholder="you@company.com" value="{{ formEmail }}" onChange="{{ setEmail }}" style="min-height:52px;padding:0 16px;border-radius:14px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.06);color:#F6F3FF;font-family:inherit;font-size:16px;">
+              </div>
+            </div>
+
+            <div id="svc-label" style="margin-top:24px;font-size:15px;font-weight:500;">What do you need?</div>
+            <div role="group" aria-labelledby="svc-label" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:10px;">
+              <sc-for list="{{ serviceChips }}" as="chip" hint-placeholder-count="8">
+                <button type="button" class="chip" aria-pressed="{{ chip.on }}" onClick="{{ chip.toggle }}" style="min-height:44px;padding:0 18px;border-radius:999px;border:1px solid;font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;{{ chip.style }}">{{ chip.label }}</button>
+              </sc-for>
+            </div>
+
+            <div id="time-label" style="margin-top:24px;font-size:15px;font-weight:500;">When would you like to start?</div>
+            <div role="group" aria-labelledby="time-label" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:10px;">
+              <sc-for list="{{ timeChips }}" as="chip" hint-placeholder-count="3">
+                <button type="button" class="chip" aria-pressed="{{ chip.on }}" onClick="{{ chip.pick }}" style="min-height:44px;padding:0 18px;border-radius:999px;border:1px solid;font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;{{ chip.style }}">{{ chip.label }}</button>
+              </sc-for>
+            </div>
+
+            <div style="margin-top:24px;display:flex;flex-direction:column;gap:8px;">
+              <label for="brief-msg" style="font-size:15px;font-weight:500;">What are you building?</label>
+              <textarea id="brief-msg" rows="4" value="{{ formMsg }}" onChange="{{ setMsg }}" placeholder="A few lines about your business, your goals, and any sites you like" style="padding:14px 16px;border-radius:14px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.06);color:#F6F3FF;font-family:inherit;font-size:16px;resize:vertical;"></textarea>
+            </div>
+
+            <a class="btn btn-primary" href="{{ briefHref }}" target="_blank" rel="noopener" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ send }}" style="margin-top:28px;width:100%;">Send my brief on WhatsApp</a>
+            <p style="margin-top:12px;font-size:15px;color:#B9B2DC;text-align:center;">This opens WhatsApp with your details filled in.</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:24px 0;">
+            <div class="ok-pop" style="width:56px;height:56px;border-radius:50%;background:linear-gradient(100deg,#6B43FF,#B734D6);display:flex;align-items:center;justify-content:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"></path></svg></div>
+            <h3 class="display" style="margin-top:22px;font-weight:700;font-size:28px;letter-spacing:-0.02em;">Your brief is ready</h3>
+            <p style="margin-top:10px;color:#B9B2DC;">Your details are ready in WhatsApp. Press send there and we'll reply with a time for your free call.</p>
+            <button type="button" class="btn btn-ghost" onClick="{{ reset }}" style="margin-top:26px;">Send another brief</button>
+          </div>
+        </sc-if>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="rv-sec" style="border-top:1px solid rgba(255,255,255,0.1);overflow:hidden;">
+  <div class="wrap" style="padding-top:64px;padding-bottom:40px;">
+    <div class="foot-grid" style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);gap:40px;">
+      <div>
+        <div class="display" style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-0.02em;">
+          <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5L27 24H5L16 5Z" fill="none" stroke="#F6F3FF" stroke-opacity="0.5" stroke-width="1.5" stroke-linejoin="round"></path><circle cx="16" cy="5" r="4" fill="#6B43FF"></circle><circle cx="27" cy="24" r="4" fill="#C13BE0"></circle><circle cx="5" cy="24" r="4" fill="#FF7A3D"></circle></svg>
+          Triad Webworks
+        </div>
+        <p style="margin-top:14px;max-width:340px;color:#B9B2DC;font-size:16px;">Websites built, secured, and maintained by four founders.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3 class="display" style="font-weight:700;font-size:18px;">Explore</h3>
+        <ul style="margin-top:14px;display:flex;flex-direction:column;gap:10px;font-size:16px;">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3 class="display" style="font-weight:700;font-size:18px;">Get in touch</h3>
+        <ul style="margin-top:14px;display:flex;flex-direction:column;gap:10px;font-size:16px;color:#B9B2DC;">
+          <li><a href="mailto:triadwebworksin@gmail.com">triadwebworksin@gmail.com</a></li>
+          <li><a href="{{ callHref }}" target="_blank" rel="noopener" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ rerollCall }}">Chat on WhatsApp</a></li>
+          <li><a href="{{ callHref }}" target="_blank" rel="noopener" onMouseDown="{{ rerollCall }}" onTouchStart="{{ rerollCall }}" onFocus="{{ rerollCall }}" onClick="{{ rerollCall }}">Book a free call</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="display foot-mark" aria-hidden="true" style="margin-top:56px;">Triad Webworks</div>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:15px;color:#B9B2DC;">
+      <span>© 2026 Triad Webworks. All rights reserved.</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { audience: 'local', faqOpen: 0, picked: {}, timeline: 'asap', sent: false, callIdx: Math.floor(Math.random() * 4), menuOpen: false, formName: '', formEmail: '', formMsg: '' };
+  }
+
+  componentDidMount() {
+    const doc = document;
+    const root = doc.documentElement;
+    const mm = (q) => (window.matchMedia ? window.matchMedia(q).matches : false);
+    const reduce = mm('(prefers-reduced-motion: reduce)');
+    root.classList.add('js-anim');
+    const hasIO = typeof window.IntersectionObserver === 'function';
+    const secs = Array.prototype.slice.call(doc.querySelectorAll('.rv-sec'));
+    if (!hasIO) {
+      secs.forEach((el) => el.classList.add('in'));
+    } else {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) { en.target.classList.add('in'); this._io.unobserve(en.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+      secs.forEach((el) => this._io.observe(el));
+      this._failsafe = setTimeout(() => secs.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight) el.classList.add('in');
+      }), 2500);
+    }
+    if (hasIO) {
+      const links = Array.prototype.slice.call(doc.querySelectorAll('.nav-links a[href^="#"]'));
+      this._navIo = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            const id = '#' + en.target.id;
+            links.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === id));
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      ['services', 'process', 'packages', 'work', 'team', 'faq'].forEach((id) => {
+        const el = doc.getElementById(id);
+        if (el) this._navIo.observe(el);
+      });
+    }
+
+    if (hasIO) {
+      const hero = doc.getElementById('top');
+      const foot = doc.querySelector('footer');
+      this._uiIo = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.target === hero) {
+            const ratio = en.isIntersecting ? en.intersectionRatio : 0;
+            root.setAttribute('data-past-hero', ratio < 0.35 ? '1' : '0');
+            root.setAttribute('data-scrolled', ratio < 0.95 ? '1' : '0');
+          } else if (en.target === foot) {
+            root.setAttribute('data-end', en.isIntersecting && en.intersectionRatio > 0.4 ? '1' : '0');
+          }
+        });
+      }, { threshold: [0, 0.1, 0.2, 0.35, 0.5, 0.75, 1] });
+      if (hero) this._uiIo.observe(hero);
+      if (foot) this._uiIo.observe(foot);
+    }
+    let ticking = false;
+    this._onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const y = window.scrollY || root.scrollTop || 0;
+        const max = Math.max(1, root.scrollHeight - window.innerHeight);
+        root.style.setProperty('--sp', Math.min(1, Math.max(0, y / max)).toFixed(4));
+        root.setAttribute('data-scrolled', y > 40 ? '1' : '0');
+        root.setAttribute('data-past-hero', y > window.innerHeight * 0.55 ? '1' : '0');
+        root.setAttribute('data-end', max - y < 180 ? '1' : '0');
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+    if (!reduce && mm('(hover: hover) and (pointer: fine)')) {
+      root.classList.add('fine');
+      let raf = 0, ev = null, lastCard = null, lastMag = null;
+      this._onMove = (e) => {
+        ev = e;
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const x = ev.clientX, y = ev.clientY;
+          root.style.setProperty('--cx', x + 'px');
+          root.style.setProperty('--cy', y + 'px');
+          root.style.setProperty('--mx', (x / window.innerWidth - 0.5).toFixed(3));
+          root.style.setProperty('--my', (y / window.innerHeight - 0.5).toFixed(3));
+          const t = ev.target && ev.target.closest ? ev.target : null;
+          const card = t ? t.closest('.spot') : null;
+          if (card) {
+            const r = card.getBoundingClientRect();
+            const px = (x - r.left) / r.width, py = (y - r.top) / r.height;
+            card.style.setProperty('--x', (px * 100).toFixed(1) + '%');
+            card.style.setProperty('--y', (py * 100).toFixed(1) + '%');
+            card.style.setProperty('--rx', ((0.5 - py) * 7).toFixed(2) + 'deg');
+            card.style.setProperty('--ry', ((px - 0.5) * 9).toFixed(2) + 'deg');
+          }
+          if (lastCard && lastCard !== card) { lastCard.style.setProperty('--rx', '0deg'); lastCard.style.setProperty('--ry', '0deg'); }
+          lastCard = card;
+          const mag = t ? t.closest('.mag') : null;
+          if (mag) {
+            const r = mag.getBoundingClientRect();
+            mag.style.setProperty('--tx', ((x - (r.left + r.width / 2)) * 0.22).toFixed(1) + 'px');
+            mag.style.setProperty('--ty', ((y - (r.top + r.height / 2)) * 0.32).toFixed(1) + 'px');
+          }
+          if (lastMag && lastMag !== mag) { lastMag.style.setProperty('--tx', '0px'); lastMag.style.setProperty('--ty', '0px'); }
+          lastMag = mag;
+        });
+      };
+      window.addEventListener('pointermove', this._onMove, { passive: true });
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    if (this._navIo) this._navIo.disconnect();
+    if (this._uiIo) this._uiIo.disconnect();
+    if (this._failsafe) clearTimeout(this._failsafe);
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._onMove) window.removeEventListener('pointermove', this._onMove);
+  }
+
+  renderVals() {
+    const s = this.state;
+    const isLocal = s.audience === 'local';
+    const segOn = 'background:#F6F3FF;color:#0B0919;';
+    const segOff = 'background:transparent;color:#F6F3FF;';
+    const chipOn = 'background:linear-gradient(100deg,#6B43FF,#B734D6);border-color:transparent;color:#ffffff;';
+    const chipOff = 'background:transparent;border-color:rgba(255,255,255,0.24);color:#F6F3FF;';
+
+    const starts = isLocal
+      ? [
+          { text: 'A mobile-first site that shows up when locals search' },
+          { text: 'Enquiry forms, online booking, or WhatsApp chat' },
+          { text: 'Simple updates you can do yourself, or leave to us' }
+        ]
+      : [
+          { text: 'A launch page that explains what you do in seconds' },
+          { text: 'A store or web app that takes payments online' },
+          { text: 'Analytics and integrations wired in from day one' }
+        ];
+
+    const svc = [
+      ['website', 'Website'],
+      ['store', 'Online store'],
+      ['app', 'Web app'],
+      ['design', 'UI/UX design'],
+      ['manage', 'Ongoing updates'],
+      ['seo', 'SEO and speed'],
+      ['security', 'Security hardening'],
+      ['integrations', 'Integrations']
+    ];
+    const serviceChips = svc.map(([id, label]) => {
+      const on = !!s.picked[id];
+      return {
+        label,
+        on,
+        style: on ? chipOn : chipOff,
+        toggle: () => this.setState((prev) => ({ picked: { ...prev.picked, [id]: !prev.picked[id] } }))
+      };
+    });
+
+    const tl = [
+      ['asap', 'As soon as possible'],
+      ['month', 'Within a month'],
+      ['explore', 'Just exploring']
+    ];
+    const timeChips = tl.map(([id, label]) => {
+      const on = s.timeline === id;
+      return {
+        label,
+        on,
+        style: on ? chipOn : chipOff,
+        pick: () => this.setState({ timeline: id })
+      };
+    });
+
+    const faqData = [
+      { q: 'How long does a website take?', a: 'It depends on the size and the integrations. A focused business site usually takes a few weeks, while stores and web apps take longer. We give you a timeline on the free call, before you commit to anything.' },
+      { q: 'How does pricing work?', a: 'We quote every project after a free call. You get a written quote that lists exactly what is included, so you only pay for what your project needs.' },
+      { q: 'Do we own the website?', a: 'Yes. The code, design files, domain, and content are yours. If you ever move on, we hand everything over.' },
+      { q: 'Can you improve a site we already have?', a: 'Yes. We can redesign it, speed it up, tighten its security basics, or take over its updates and upkeep.' },
+      { q: 'What do you need from us to start?', a: 'Just a call. Bring your goals, any brand assets you already have, and examples of sites you like. We handle the rest.' },
+      { q: 'What happens after launch?', a: 'Choose Managed Care and we handle content changes, updates, and regular check-ups. Or take the site and run it yourself.' }
+    ];
+    const faqs = faqData.map((f, i) => {
+      const open = s.faqOpen === i;
+      return {
+        q: f.q,
+        a: f.a,
+        open,
+        rot: open ? 'rotate(135deg)' : 'rotate(0deg)',
+        cls: open ? 'open' : '',
+        hidden: open ? 'false' : 'true',
+        toggle: () => this.setState((prev) => ({ faqOpen: prev.faqOpen === i ? -1 : i }))
+      };
+    });
+
+    const numbers = ['918667828159', '919087065160', '919003670979', '919363581924'];
+    const wa = (text) => 'https://wa.me/' + numbers[s.callIdx % numbers.length] + '?text=' + encodeURIComponent(text);
+    const roll = () => Math.floor(Math.random() * numbers.length);
+    const pickedLabels = svc.filter(([id]) => s.picked[id]).map(([id, label]) => label);
+    const timeLabel = (tl.find(([id]) => id === s.timeline) || ['', ''])[1];
+    const lines = ["Hi Triad Webworks, I'd like a quote."];
+    if (s.formName.trim()) lines.push('Name: ' + s.formName.trim());
+    if (s.formEmail.trim()) lines.push('Email: ' + s.formEmail.trim());
+    lines.push('Needs: ' + (pickedLabels.length ? pickedLabels.join(', ') : 'Not sure yet'));
+    lines.push('Start: ' + timeLabel);
+    if (s.formMsg.trim()) lines.push('About the project: ' + s.formMsg.trim());
+
+    return {
+      menuOpen: s.menuOpen,
+      menuClosed: !s.menuOpen,
+      toggleMenu: () => this.setState((prev) => ({ menuOpen: !prev.menuOpen })),
+      closeMenu: () => { setTimeout(() => this.setState({ menuOpen: false }), 150); },
+      menuKey: (e) => { if (e && e.key === 'Escape') this.setState({ menuOpen: false }); },
+      callHref: wa("Hi Triad Webworks, I'd like to book a free call."),
+      quoteHref: wa("Hi Triad Webworks, I'd like a quote for a website."),
+      launchHref: wa("Hi Triad Webworks, I'd like a quote for the Launch package."),
+      growthHref: wa("Hi Triad Webworks, I'd like a quote for the Growth package."),
+      careHref: wa("Hi Triad Webworks, I'd like a quote for Managed Care."),
+      briefHref: wa(lines.join('\n')),
+      rerollCall: () => this.setState({ callIdx: roll() }),
+      formName: s.formName,
+      formEmail: s.formEmail,
+      formMsg: s.formMsg,
+      setName: (e) => this.setState({ formName: e.target.value }),
+      setEmail: (e) => this.setState({ formEmail: e.target.value }),
+      setMsg: (e) => this.setState({ formMsg: e.target.value }),
+      isLocal,
+      isStartup: !isLocal,
+      pickLocal: () => this.setState({ audience: 'local' }),
+      pickStartup: () => this.setState({ audience: 'startup' }),
+      localExtra: isLocal ? segOn : segOff,
+      startupExtra: isLocal ? segOff : segOn,
+      starts,
+      serviceChips,
+      timeChips,
+      faqs,
+      sent: s.sent,
+      notSent: !s.sent,
+      send: () => { setTimeout(() => this.setState({ sent: true }), 400); },
+      reset: () => this.setState({ sent: false, picked: {}, timeline: 'asap', formName: '', formEmail: '', formMsg: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>
